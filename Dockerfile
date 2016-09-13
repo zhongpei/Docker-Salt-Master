@@ -8,7 +8,7 @@ MAINTAINER zhongpei <zhongpei@vip.qq.com>
 ENV DEBIAN_FRONTEND noninteractive
 # Add PPA
 
-RUN sed -i 's/archive.ubuntu.com/mirrors.163.com/g' /etc/apt/sources.list
+#RUN sed -i 's/archive.ubuntu.com/mirrors.163.com/g' /etc/apt/sources.list
 RUN apt-get update && apt-get install -y  wget
 RUN wget -O - https://repo.saltstack.com/apt/ubuntu/14.04/amd64/latest/SALTSTACK-GPG-KEY.pub | sudo apt-key add -
 RUN echo "deb http://repo.saltstack.com/apt/ubuntu/14.04/amd64/latest trusty main" >> /etc/apt/sources.list
