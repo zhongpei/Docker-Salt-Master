@@ -2,11 +2,16 @@
 
 A Docker image which allows you to run a containerised Salt-Master server.
 
+## Build
+	
+	docker build -t="zhongpei/salt-master" .
+
+
 ## Running the Container
 
 You can easily run the container like so:
 
-    docker run --rm -it soon/salt-master
+    docker run --rm -it zhongpei/salt-master
 
 ## Environment Variables
 
@@ -38,7 +43,7 @@ This will create a stopped container wwith the name of `salt-master-data` and
 will hold our persistant salt master data. Now we just need to run our master
 container with the `--volumes-from` command:
 
-    docker run --rm -it --volumes-from salt-master-data soon/salt-master
+    docker run --rm -it --volumes-from salt-master-data zhongpei/salt-master
 
 ### Sharing Local Folders
 
@@ -56,6 +61,7 @@ The following ports are exposed:
 
  * `4505`
  * `4506`
+ * `443`
 
 These ports allow minions to communicate with the Salt Master.
 

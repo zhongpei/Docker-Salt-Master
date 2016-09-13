@@ -3,24 +3,24 @@
 #
 
 FROM ubuntu:14.04
-MAINTAINER SOON_ <dorks@thisissoon.com>
+MAINTAINER zhongpei <zhongpei@vip.qq.com>
 
-# Update System
-RUN apt-get update && apt-get upgrade -y -o DPkg::Options::=--force-confold
-
+ENV DEBIAN_FRONTEND noninteractive
 # Add PPA
 
-RUN apt-get install -y software-properties-common dmidecode
-RUN add-apt-repository -y ppa:saltstack/salt
+RUN sed -i 's/archive.ubuntu.com/mirrors.163.com/g' /etc/apt/sources.list
+RUN apt-get update && apt-get install -y  wget
+RUN wget -O - https://repo.saltstack.com/apt/ubuntu/14.04/amd64/latest/SALTSTACK-GPG-KEY.pub | sudo apt-key add -
+RUN echo "deb http://repo.saltstack.com/apt/ubuntu/14.04/amd64/latest trusty main" >> /etc/apt/sources.list
 RUN apt-get update
 
 # Install Salt
 
-RUN apt-get install -y salt-master=2014.1.11+ds-2trusty1
+RUN apt-get install -y salt-master salt-api salt-cloud
 
 # Volumes
 
-VOLUME ['/etc/salt/pki', '/var/cache/salt', '/var/logs/salt', '/etc/salt/master.d', '/srv/salt']
+VOLUME ['/etc/salt/pki', '/var/cache/salt', '/var/logs/salt' , '/etc/salt/master.d' , '/srv/salt']
 
 # Add Run File
 
@@ -29,7 +29,7 @@ RUN chmod +x /usr/local/bin/run.sh
 
 # Ports
 
-EXPOSE 4505 4506
+EXPOSE 4505 4506 443
 
 # Run Command
 

@@ -3,6 +3,7 @@
 #
 # Salt-Master Run Script
 #
+service salt-master stop
 
 set -e
 
