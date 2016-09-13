@@ -1,0 +1,9 @@
+salt-master:
+    image: zhongpei/salt-master
+    ports:
+      - "4505:4505"
+      - "4506:4506"
+    volumes:
+      - "./etc/salt/:/etc/salt/"
+      - "./srv/salt:/srv/salt"
+    restart: always
